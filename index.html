@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<title>나의 예매 목록 - 이스타항공</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: #f3f3f3; min-width: 1440px; }
+  a { text-decoration: none; color: inherit; cursor: pointer; }
+  .inter { font-family: 'Inter', sans-serif; }
+  .page { position: relative; width: 1440px; min-height: 1320px; background: #f3f3f3; margin: 0 auto; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- GNB -->
+  <div style="position:absolute;top:0;left:0;width:1440px;height:60px;background:#e60012;overflow:hidden;">
+    <p style="position:absolute;left:120px;top:18px;font-size:20px;font-weight:700;color:white;letter-spacing:0.5px;">이스타항공</p>
+    <p style="position:absolute;left:1170px;top:22px;font-size:13px;font-weight:400;color:#ffcccc;">마이페이지</p>
+    <p style="position:absolute;left:1252px;top:22px;font-size:13px;font-weight:400;color:#ffcccc;">로그아웃</p>
+  </div>
+
+  <!-- LNB -->
+  <div style="position:absolute;top:60px;left:0;width:1440px;height:48px;background:white;box-shadow:0px 2px 4px 0px rgba(0,0,0,0.06);overflow:hidden;">
+    <p style="position:absolute;left:120px;top:17px;font-size:14px;font-weight:700;color:black;">나의 예매 목록</p>
+    <div style="position:absolute;left:120px;top:45px;width:88px;height:2px;background:#e60012;"></div>
+  </div>
+
+  <!-- 예매 내역 | 취소 내역 heading -->
+  <p style="position:absolute;left:120px;top:144px;font-size:22px;font-weight:700;color:#222;white-space:pre;">예매 내역  |  <span style="color:#999;">취소 내역</span></p>
+
+  <!-- D-15 badge -->
+  <div style="position:absolute;left:120px;top:206px;width:87px;height:30px;border:1px solid #e60012;border-radius:15px;display:flex;align-items:center;justify-content:center;">
+    <p style="font-size:17px;font-weight:700;color:#e60012;">D-15</p>
+  </div>
+
+  <!-- ===== Card 1: KG336F ===== -->
+  <div style="position:absolute;top:245px;left:120px;width:1200px;height:200px;background:white;border-radius:10px;box-shadow:0px 4px 16px 0px rgba(0,0,0,0.1);overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:1200px;height:44px;background:#e60012;">
+      <p style="position:absolute;left:26px;top:10px;font-size:22px;font-weight:700;color:white;">KG336F</p>
+      <img style="position:absolute;left:118px;top:13px;width:20px;height:20px;" src="https://www.figma.com/api/mcp/asset/61a5cfa2-eefd-44af-b47c-0a8cf57f91d5" alt="">
+      <div style="position:absolute;left:160px;top:9px;width:94px;height:28px;border:1px solid white;border-radius:20px;display:flex;align-items:center;justify-content:center;">
+        <p style="font-size:12px;font-weight:500;color:white;">확약(결제완료)</p>
+      </div>
+      <a href="booking-direct.html" style="position:absolute;left:1066px;top:15px;font-size:15px;font-weight:400;color:white;">예매 상세 보기 &gt;</a>
+    </div>
+    <!-- Outbound: ICN → CNX -->
+    <div style="position:absolute;left:26px;top:68px;width:319px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+        <p style="font-size:14px;font-weight:400;color:#4b4b4b;">2026-06-25(목)</p>
+        <p style="font-size:13px;font-weight:300;color:#777;">ZE871</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:35.5px;">
+        <div style="width:92px;">
+          <p style="font-size:30px;font-weight:700;color:#222;font-family:'Inter',sans-serif;">18:30</p>
+          <p style="margin-top:7px;font-size:0;">
+            <span style="font-size:20px;font-weight:700;color:#222;">서울/인천 </span><span style="font-size:12px;font-weight:300;color:#222;">ICN</span>
+          </p>
+        </div>
+        <div style="width:56px;text-align:center;">
+          <p style="font-size:24px;font-weight:700;color:#e60012;font-family:'Inter',sans-serif;">→</p>
+          <p style="font-size:12px;font-weight:400;color:#bdbdbd;margin-top:3px;">1시간 15분</p>
+        </div>
+        <div style="flex:1;">
+          <p style="font-size:30px;font-weight:700;color:#222;font-family:'Inter',sans-serif;">22:40</p>
+          <p style="margin-top:7px;font-size:0;">
+            <span style="font-size:20px;font-weight:700;color:#222;">치앙마이 </span><span style="font-size:12px;font-weight:300;color:#222;">CNX</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Divider -->
+    <div style="position:absolute;left:396px;top:70px;width:1px;height:100px;background:#e5e5e5;"></div>
+    <!-- Return: CNX → ICN -->
+    <div style="position:absolute;left:443px;top:70px;width:292px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+        <p style="font-size:14px;font-weight:400;color:#4b4b4b;">2026-06-29(월)</p>
+        <p style="font-size:13px;font-weight:300;color:#777;">ZE872</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:22px;">
+        <div style="width:100px;">
+          <p style="font-size:30px;font-weight:700;color:#222;font-family:'Inter',sans-serif;">23:55</p>
+          <p style="margin-top:7px;font-size:0;">
+            <span style="font-size:20px;font-weight:700;color:#222;">치앙마이 </span><span style="font-size:12px;font-weight:300;color:#222;">CNX</span>
+          </p>
+        </div>
+        <div style="width:56px;text-align:center;">
+          <p style="font-size:24px;font-weight:700;color:#e60012;font-family:'Inter',sans-serif;">→</p>
+          <p style="font-size:12px;font-weight:400;color:#bdbdbd;margin-top:3px;">1시간 15분</p>
+        </div>
+        <div style="flex:1;">
+          <p style="font-size:0;font-weight:700;">
+            <span style="font-size:30px;color:#222;font-family:'Inter',sans-serif;">07:10 </span><span style="font-size:15px;color:#e60012;">(+1)</span>
+          </p>
+          <p style="margin-top:7px;font-size:0;font-weight:700;">
+            <span style="font-size:20px;color:#222;">서울/인천 </span><span style="font-size:12px;font-weight:300;color:#222;">ICN</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Icon box -->
+    <div style="position:absolute;left:811px;top:66px;width:210px;height:110px;">
+      <div style="position:absolute;inset:0;background:#f5f5f5;border-radius:15px;"></div>
+      <div style="position:absolute;left:106px;top:21px;width:1px;height:68px;background:#e5e5e5;"></div>
+      <img style="position:absolute;left:74px;top:26px;width:18px;height:18px;" src="https://www.figma.com/api/mcp/asset/c0f19e27-9d81-44e2-9e1b-91d9b2e2653d" alt="">
+      <img style="position:absolute;left:166px;top:26px;width:18px;height:18px;" src="https://www.figma.com/api/mcp/asset/de60cb9e-c6dd-4c30-950d-785fc14bedcf" alt="">
+      <img style="position:absolute;left:124px;top:34px;width:38px;height:36px;" src="https://www.figma.com/api/mcp/asset/ad092cf2-755c-4798-92c2-416c2e5e4306" alt="">
+      <img style="position:absolute;left:29px;top:31px;width:44px;height:44px;" src="https://www.figma.com/api/mcp/asset/40437819-6a42-4f88-a050-4ffac46f1352" alt="">
+    </div>
+    <!-- 온라인 체크인 -->
+    <div style="position:absolute;left:1031px;top:65px;width:150px;height:110px;background:#f5f5f5;border-radius:15px;display:flex;align-items:center;justify-content:center;">
+      <p style="font-size:16px;font-weight:500;color:black;white-space:nowrap;font-family:'Inter',sans-serif;">온라인 체크인 &gt;</p>
+    </div>
+  </div>
+
+  <!-- ===== Card 2: UAU9T ===== -->
+  <div style="position:absolute;top:458px;left:120px;width:1200px;height:200px;background:white;border-radius:10px;box-shadow:0px 4px 16px 0px rgba(0,0,0,0.1);overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:1200px;height:44px;background:#e60012;">
+      <p style="position:absolute;left:26px;top:10px;font-size:22px;font-weight:700;color:white;">UAU9T</p>
+      <img style="position:absolute;left:118px;top:13px;width:20px;height:20px;" src="https://www.figma.com/api/mcp/asset/61a5cfa2-eefd-44af-b47c-0a8cf57f91d5" alt="">
+      <div style="position:absolute;left:160px;top:9px;width:94px;height:28px;border:1px solid white;border-radius:20px;display:flex;align-items:center;justify-content:center;">
+        <p style="font-size:12px;font-weight:500;color:white;">확약(결제완료)</p>
+      </div>
+      <a href="booking-direct.html" style="position:absolute;left:1066px;top:15px;font-size:15px;font-weight:400;color:white;">예매 상세 보기 &gt;</a>
+    </div>
+    <!-- Outbound: CJU → PVG -->
+    <div style="position:absolute;left:26px;top:68px;width:319px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px;">
+        <p style="font-size:14px;font-weight:400;color:#4b4b4b;">2026-06-25(목)</p>
+        <p style="font-size:13px;font-weight:300;color:#777;">ZE871</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:35.5px;">
+        <div style="width:92px;">
+          <p style="font-size:30px;font-weight:700;color:#222;font-family:'Inter',sans-serif;">18:30</p>
+          <p style="margin-top:7px;font-size:0;">
+            <span style="font-size:20px;font-weight:700;color:#222;">Jeju  </span><span style="font-size:12px;font-weight:300;color:#222;">CJU</span>
+          </p>
+        </div>
+        <div style="width:56px;text-align:center;">
+          <p style="font-size:24px;font-weight:700;color:#e60012;font-family:'Inter',sans-serif;">→</p>
+          <p style="font-size:12px;font-weight:400;color:#bdbdbd;margin-top:3px;">1시간 15분</p>
+        </div>
+        <div style="flex:1;">
+          <p style="font-size:30px;font-weight:700;color:#222;font-family:'Inter',sans-serif;">22:40</p>
+          <p style="margin-top:7px;font-size:0;">
+            <span style="font-size:20px;font-weight:700;color:#222;">Shanghai/Pudong </span><span style="font-size:12px;font-weight:300;color:#222;">PVG</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Divider -->
+    <div style="position:absolute;left:396px;top:70px;width:1px;height:100px;background:#e5e5e5;"></div>
+    <!-- Return: PVG → CJU -->
+    <div style="position:absolute;left:446px;top:70px;width:292px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+        <p style="font-size:14px;font-weight:400;color:#4b4b4b;">2026-06-29(월)</p>
+        <p style="font-size:13px;font-weight:300;color:#777;">ZE872</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:22px;">
+        <div style="width:100px;">
+          <p style="font-size:30px;font-weight:700;color:#222;font-family:'Inter',sans-serif;">23:55</p>
+          <p style="margin-top:7px;font-size:0;">
+            <span style="font-size:20px;font-weight:700;color:#222;">상하이/푸동 </span><span style="font-size:12px;font-weight:300;color:#222;">PVG</span>
+          </p>
+        </div>
+        <div style="width:56px;text-align:center;">
+          <p style="font-size:24px;font-weight:700;color:#e60012;font-family:'Inter',sans-serif;">→</p>
+          <p style="font-size:12px;font-weight:400;color:#bdbdbd;margin-top:3px;">1시간 15분</p>
+        </div>
+        <div style="flex:1;">
+          <p style="font-size:0;font-weight:700;">
+            <span style="font-size:30px;color:#222;font-family:'Inter',sans-serif;">07:10 </span><span style="font-size:15px;color:#e60012;">(+1)</span>
+          </p>
+          <p style="margin-top:7px;font-size:0;font-weight:700;">
+            <span style="font-size:20px;color:#222;">제주 </span><span style="font-size:12px;font-weight:300;color:#222;">ICN</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Icon box -->
+    <div style="position:absolute;left:815px;top:66px;width:210px;height:110px;">
+      <div style="position:absolute;inset:0;background:#f5f5f5;border-radius:15px;"></div>
+      <div style="position:absolute;left:106px;top:21px;width:1px;height:68px;background:#e5e5e5;"></div>
+      <img style="position:absolute;left:74px;top:26px;width:18px;height:18px;" src="https://www.figma.com/api/mcp/asset/0be2a361-79bf-476c-9559-6da15a02fc96" alt="">
+      <img style="position:absolute;left:166px;top:26px;width:18px;height:18px;" src="https://www.figma.com/api/mcp/asset/011ab22a-4e78-4ffd-b520-a002c6539c66" alt="">
+      <img style="position:absolute;left:124px;top:34px;width:38px;height:36px;" src="https://www.figma.com/api/mcp/asset/ad092cf2-755c-4798-92c2-416c2e5e4306" alt="">
+      <img style="position:absolute;left:29px;top:31px;width:44px;height:44px;" src="https://www.figma.com/api/mcp/asset/40437819-6a42-4f88-a050-4ffac46f1352" alt="">
+    </div>
+    <!-- 자동 체크인 -->
+    <div style="position:absolute;left:1031px;top:66px;width:150px;height:110px;background:#f5f5f5;border-radius:15px;display:flex;align-items:center;justify-content:center;">
+      <p style="font-size:16px;font-weight:500;color:black;white-space:nowrap;font-family:'Inter',sans-serif;">자동 체크인 &gt;</p>
+    </div>
+  </div>
+
+  <!-- ===== 예매 목록 섹션 ===== -->
+  <p style="position:absolute;left:120px;top:729px;font-size:17px;font-weight:700;color:#222;">예매 목록</p>
+  <p style="position:absolute;left:1198px;top:732px;font-size:12px;font-weight:300;color:#4b4b4b;white-space:pre;">출발일 순     | </p>
+  <p style="position:absolute;left:1269px;top:732px;font-size:12px;font-weight:500;color:#d90e0e;">예약일 순</p>
+
+  <!-- Table header -->
+  <div style="position:absolute;left:120px;top:764px;width:1200px;height:44px;background:#e5e7eb;overflow:hidden;">
+    <p style="position:absolute;left:31px;top:14px;font-size:13px;font-weight:700;color:#222;">예매 번호</p>
+    <div style="position:absolute;left:110px;top:0;width:1px;height:44px;background:#b7b9bd;"></div>
+    <p style="position:absolute;left:549px;top:14px;font-size:13px;font-weight:700;color:#222;">여정</p>
+    <div style="position:absolute;left:1010px;top:0;width:1px;height:44px;background:#b7b9bd;"></div>
+    <p style="position:absolute;left:1078px;top:14px;font-size:13px;font-weight:700;color:#222;">예매 상태</p>
+  </div>
+
+  <!-- Row 1: X39Y75 (확약/결제완료) -->
+  <div style="position:absolute;left:120px;top:808px;width:1200px;height:81px;background:white;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:1200px;height:1px;background:#e0e1e5;"></div>
+    <p style="position:absolute;left:30.5px;top:32px;font-size:14px;font-weight:700;color:#222;">X39Y75</p>
+    <div style="position:absolute;left:110px;top:0;width:1px;height:196px;background:#e0e1e5;"></div>
+    <div style="position:absolute;left:110px;top:0;width:900px;height:81px;overflow:hidden;">
+      <p style="position:absolute;left:334px;top:16px;font-size:10px;font-weight:500;color:#777;">ZE501</p>
+      <p style="position:absolute;left:80px;top:17px;font-size:12px;color:black;">2026.10.15(금)</p>
+      <p style="position:absolute;left:507px;top:17px;font-size:12px;color:black;">2026.10.29(금)</p>
+      <p style="position:absolute;left:744px;top:18px;font-size:10px;font-weight:500;color:#777;">ZE512</p>
+      <p style="position:absolute;left:80px;top:34px;font-size:16px;font-weight:700;color:#222;">서울/인천</p>
+      <p style="position:absolute;left:150px;top:39px;font-size:11px;font-weight:500;color:black;">ICN</p>
+      <p style="position:absolute;left:80px;top:54px;font-size:12px;color:black;">07:25</p>
+      <img style="position:absolute;left:202px;top:34px;width:18px;height:18px;" src="https://www.figma.com/api/mcp/asset/74a763e2-c93b-4090-acd5-d83b678e7ba0" alt="→">
+      <p style="position:absolute;left:258px;top:34px;font-size:16px;font-weight:700;color:#222;">도쿄/나리타</p>
+      <p style="position:absolute;left:343px;top:39px;font-size:11px;font-weight:500;color:black;">NRT</p>
+      <p style="position:absolute;left:258px;top:54px;font-size:12px;color:black;">09:55</p>
+      <div style="position:absolute;left:559px;top:18px;width:1px;height:50px;background:#b7b9bd;"></div>
+      <p style="position:absolute;left:507px;top:33px;font-size:16px;font-weight:700;color:#222;">오키나와</p>
+      <p style="position:absolute;left:572px;top:38px;font-size:11px;font-weight:500;color:black;">OKA</p>
+      <p style="position:absolute;left:507px;top:53px;font-size:12px;color:black;">15:00</p>
+      <img style="position:absolute;left:628px;top:33px;width:18px;height:18px;" src="https://www.figma.com/api/mcp/asset/3df72713-d397-44b0-93b3-beeafb4939a7" alt="→">
+      <p style="position:absolute;left:684px;top:33px;font-size:16px;font-weight:700;color:#222;">서울/인천</p>
+      <p style="position:absolute;left:754px;top:39px;font-size:11px;font-weight:500;color:black;">ICN</p>
+      <p style="position:absolute;left:684px;top:53px;font-size:12px;color:black;">18:30</p>
+    </div>
+    <div style="position:absolute;left:1010px;top:0;width:1px;height:196px;background:#e0e1e5;"></div>
+    <p style="position:absolute;left:1057px;top:19px;font-size:12px;font-weight:500;color:#182448;">확약(결제완료)</p>
+    <a href="booking-direct.html" style="position:absolute;left:1050px;top:38px;width:90px;height:22px;background:#e60012;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+      <p style="font-size:13px;font-weight:500;color:white;">상세 보기</p>
+    </a>
+  </div>
+
+  <!-- Row 2: TY9TUI (결제 대기) -->
+  <div style="position:absolute;left:120px;top:889px;width:1200px;height:81px;background:white;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:1200px;height:1px;background:#e0e1e5;"></div>
+    <p style="position:absolute;left:30.5px;top:32px;font-size:14px;font-weight:700;color:#222;">TY9TUI</p>
+    <div style="position:absolute;left:110px;top:0;width:1px;height:196px;background:#e0e1e5;"></div>
+    <div style="position:absolute;left:110px;top:0;width:900px;height:81px;overflow:hidden;">
+      <p style="position:absolute;left:335px;top:18px;font-size:10px;font-weight:500;color:#777;">ZE601</p>
+      <p style="position:absolute;left:80px;top:17px;font-size:12px;color:black;">2026.09.13(목)</p>
+      <p style="position:absolute;left:507px;top:17px;font-size:12px;color:black;">2026.09.18(월)</p>
+      <p style="position:absolute;left:757px;top:18px;font-size:10px;font-weight:500;color:#777;">ZE8891</p>
+      <p style="position:absolute;left:80px;top:34px;font-size:16px;font-weight:700;color:#222;">서울/인천</p>
+      <p style="position:absolute;left:150px;top:39px;font-size:11px;font-weight:500;color:black;">ICN</p>
+      <p style="position:absolute;left:80px;top:54px;font-size:12px;color:black;">07:25</p>
+      <img style="position:absolute;left:202px;top:36px;width:18px;height:18px;" src="https://www.figma.com/api/mcp/asset/2721457e-1653-4e4c-b8ff-8937eb8d3c70" alt="→">
+      <p style="position:absolute;left:258px;top:34px;font-size:16px;font-weight:700;color:#222;">상하이/푸동</p>
+      <p style="position:absolute;left:343px;top:39px;font-size:11px;font-weight:500;color:black;">PVG</p>
+      <p style="position:absolute;left:258px;top:54px;font-size:12px;color:black;">09:55</p>
+      <div style="position:absolute;left:559px;top:18px;width:1px;height:50px;background:#b7b9bd;"></div>
+      <p style="position:absolute;left:507px;top:34px;font-size:16px;font-weight:700;color:#222;">상하이/푸동</p>
+      <p style="position:absolute;left:591px;top:39px;font-size:11px;font-weight:500;color:black;">PVG</p>
+      <p style="position:absolute;left:507px;top:54px;font-size:12px;color:black;">07:25</p>
+      <img style="position:absolute;left:629px;top:36px;width:18px;height:18px;" src="https://www.figma.com/api/mcp/asset/3df72713-d397-44b0-93b3-beeafb4939a7" alt="→">
+      <p style="position:absolute;left:685px;top:34px;font-size:16px;font-weight:700;color:#222;">도쿄/나리타</p>
+      <p style="position:absolute;left:770px;top:39px;font-size:11px;font-weight:500;color:black;">NRT</p>
+      <p style="position:absolute;left:685px;top:54px;font-size:12px;color:black;">09:55</p>
+    </div>
+    <div style="position:absolute;left:1010px;top:0;width:1px;height:196px;background:#e0e1e5;"></div>
+    <p style="position:absolute;left:1082px;top:16px;font-size:12px;font-weight:700;color:#e60012;">결제 대기</p>
+    <a href="booking-direct.html" style="position:absolute;left:1062px;top:35px;width:90px;height:22px;background:#e60012;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+      <p style="font-size:13px;font-weight:500;color:white;">상세 보기</p>
+    </a>
+  </div>
+
+  <!-- Row 3: EAE9T (탑승 완료) -->
+  <div style="position:absolute;left:120px;top:970px;width:1200px;height:81px;background:white;overflow:hidden;">
+    <div style="position:absolute;top:0;left:0;width:1200px;height:1px;background:#e0e1e5;"></div>
+    <p style="position:absolute;left:30.5px;top:31px;font-size:14px;font-weight:700;color:#222;">EAE9T</p>
+    <div style="position:absolute;left:110px;top:0;width:1px;height:196px;background:#e0e1e5;"></div>
+    <div style="position:absolute;left:110px;top:0;width:900px;height:81px;overflow:hidden;">
+      <p style="position:absolute;left:285px;top:18px;font-size:10px;font-weight:500;color:#777;">ZE604</p>
+      <p style="position:absolute;left:80px;top:17px;font-size:12px;color:black;">2026.05.13(수)</p>
+      <p style="position:absolute;left:80px;top:34px;font-size:16px;font-weight:700;color:#222;">서울/인천</p>
+      <p style="position:absolute;left:150px;top:39px;font-size:11px;font-weight:500;color:black;">ICN</p>
+      <p style="position:absolute;left:80px;top:54px;font-size:12px;color:black;">07:25</p>
+      <img style="position:absolute;left:202px;top:35px;width:18px;height:18px;" src="https://www.figma.com/api/mcp/asset/2721457e-1653-4e4c-b8ff-8937eb8d3c70" alt="→">
+      <p style="position:absolute;left:258px;top:34px;font-size:16px;font-weight:700;color:#222;">다낭</p>
+      <p style="position:absolute;left:292px;top:39px;font-size:11px;font-weight:500;color:black;">DAD</p>
+      <p style="position:absolute;left:258px;top:54px;font-size:12px;color:black;">09:55</p>
+      <div style="position:absolute;left:559px;top:18px;width:1px;height:50px;background:#b7b9bd;"></div>
+    </div>
+    <div style="position:absolute;left:1010px;top:0;width:1px;height:196px;background:#e0e1e5;"></div>
+    <p style="position:absolute;left:1082px;top:16px;font-size:12px;font-weight:500;color:#888;">탑승 완료</p>
+    <a href="booking-direct.html" style="position:absolute;left:1062px;top:35px;width:90px;height:22px;background:#e60012;border-radius:4px;display:flex;align-items:center;justify-content:center;">
+      <p style="font-size:13px;font-weight:500;color:white;">상세 보기</p>
+    </a>
+  </div>
+
+  <!-- Pagination -->
+  <div style="position:absolute;left:525px;top:1122px;width:32px;height:32px;background:#4b4b4b;border-radius:5px;display:flex;align-items:center;justify-content:center;">
+    <p style="font-size:16px;color:white;font-family:'Inter',sans-serif;">1</p>
+  </div>
+  <p style="position:absolute;left:576px;top:1126px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">2</p>
+  <p style="position:absolute;left:614px;top:1126px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">3</p>
+  <p style="position:absolute;left:652px;top:1126px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">4</p>
+  <p style="position:absolute;left:690px;top:1126px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">5</p>
+  <p style="position:absolute;left:728px;top:1126px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">6</p>
+  <p style="position:absolute;left:766px;top:1126px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">7</p>
+  <p style="position:absolute;left:804px;top:1126px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">8</p>
+  <p style="position:absolute;left:842px;top:1126px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">9</p>
+  <p style="position:absolute;left:880px;top:1126px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">10</p>
+  <p style="position:absolute;left:452px;top:1127px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">&lt; 이전</p>
+  <p style="position:absolute;left:932px;top:1127px;font-size:16px;color:#888;font-family:'Inter',sans-serif;">다음 &gt;</p>
+
+  <!-- 예매번호로 확인 버튼 -->
+  <div style="position:absolute;left:120px;top:1216px;width:1200px;height:60px;border:1.5px solid #222;border-radius:28px;background:white;box-shadow:0px 2px 8px 0px rgba(0,0,0,0.05);display:flex;align-items:center;justify-content:center;">
+    <p style="font-size:18px;font-weight:400;color:#222;white-space:pre;">예매 내역이 없으신가요?  예매번호로 예매내역을 확인해보세요  →</p>
+  </div>
+
+</div>
+</body>
+</html>
