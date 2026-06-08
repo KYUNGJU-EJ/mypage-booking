@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>예매 내역 상세 (간판) - 이스타항공</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: #f3f4f6; min-width: 1280px; padding-bottom: 80px; }
+  a { text-decoration: none; color: inherit; cursor: pointer; }
+  .page { position: relative; width: 1280px; min-height: 1620px; background: #f3f4f6; margin: 0 auto; }
+  .svc-card {
+    position: relative;
+    width: 300px;
+    height: 80px;
+    background: #f9fafc;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+  .svc-icon { position: absolute; left: 15px; top: 19px; width: 32px; height: 32px; background: #e0e7f4; }
+  .svc-title { position: absolute; left: 59px; top: 19px; font-size: 14px; font-weight: 700; color: #1a1a1a; white-space: nowrap; }
+  .svc-desc { position: absolute; left: 59px; top: 41px; font-size: 12px; font-weight: 400; color: #666; white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- GNB -->
+  <div style="position:absolute;top:0;left:0;width:1280px;height:60px;background:#d90e0e;">
+    <a href="index.html" style="position:absolute;left:40px;top:18px;font-size:22px;font-weight:700;color:white;">이스타항공</a>
+    <p style="position:absolute;left:1124px;top:22px;font-size:14px;color:white;">마이페이지</p>
+    <p style="position:absolute;left:1208px;top:22px;font-size:14px;color:#bfcce5;">로그아웃</p>
+  </div>
+
+  <!-- Page title bar -->
+  <div style="position:absolute;top:60px;left:0;width:1280px;height:64px;background:white;">
+    <div style="position:absolute;bottom:0;left:0;width:1280px;height:1px;background:#e5e5e5;"></div>
+    <p style="position:absolute;left:160px;top:20px;font-size:20px;font-weight:700;color:#1a1a1a;">예매 내역 상세</p>
+  </div>
+
+  <!-- Booking header -->
+  <div style="position:absolute;top:140px;left:160px;width:960px;height:64px;background:white;border-radius:8px;">
+    <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:#e5e5e5;"></div>
+    <p style="position:absolute;left:24px;top:23px;font-size:13px;color:#999;">예매번호</p>
+    <p style="position:absolute;left:80px;top:21px;font-size:17px;font-weight:700;color:#1a1a1a;font-family:'Inter',sans-serif;">YLGMTJ</p>
+  </div>
+
+  <!-- Alert banner -->
+  <div style="position:absolute;top:218px;left:160px;width:960px;background:#fff7f0;border:1px solid #ff6b00;border-radius:6px;display:flex;align-items:center;gap:20px;padding:16px 24px;">
+    <div style="width:20px;height:20px;background:#ff6b00;border-radius:10px;flex-shrink:0;position:relative;">
+      <p style="position:absolute;left:7px;top:3px;font-size:12px;font-weight:700;color:white;font-family:'Inter',sans-serif;">!</p>
+    </div>
+    <p style="font-size:13px;color:#994000;flex:1;">[여행자보험] 태풍•지진 등 천재지변에 의한 지연•결항도 체류비용을 보상받을 수 있어요!</p>
+    <p style="font-size:13px;font-weight:500;color:#994000;white-space:nowrap;">여행자보험 가입 &gt;</p>
+  </div>
+
+  <!-- Pack upsell (same as direct) -->
+  <div style="position:absolute;top:288px;left:160px;width:960px;background:white;border-radius:8px;padding:22px 16px;display:grid;grid-template-columns:1fr 1fr;gap:15px 16px;">
+    <p style="font-size:16px;font-weight:700;color:#1a1a1a;grid-column:1/2;">세트 구성으로  저렴하게 구매해 보세요!</p>
+    <!-- 백 세트 -->
+    <div style="position:relative;background:#f7fbff;border:1px solid #c7e0ff;border-radius:8px;height:148px;">
+      <p style="position:absolute;left:15px;top:15px;font-size:15px;font-weight:700;color:#1a1a1a;">백 세트</p>
+      <p style="position:absolute;left:15px;top:39px;font-size:13px;font-weight:700;color:#d90e0e;">8% 더 저렴해요!</p>
+      <div style="position:absolute;left:15px;top:69px;width:6px;height:6px;background:#19377e;"></div>
+      <p style="position:absolute;left:27px;top:63px;font-size:13px;color:#666;">위탁수하물 (+ 5kg)</p>
+      <div style="position:absolute;left:15px;top:91px;width:6px;height:6px;background:#19377e;"></div>
+      <p style="position:absolute;left:27px;top:85px;font-size:13px;color:#666;">사전 좌석 (17열 이후)</p>
+      <p style="position:absolute;left:15px;top:111px;font-size:15px;font-weight:700;color:#19377e;">46,900원 / 인</p>
+      <div style="position:absolute;left:364px;top:107px;width:71px;height:30px;background:#d90e0e;border-radius:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+        <p style="font-size:13px;font-weight:500;color:white;">구매 &gt;</p>
+      </div>
+      <img style="position:absolute;left:409px;top:18px;width:24px;height:24px;" src="https://www.figma.com/api/mcp/asset/6ac98a87-93ee-43de-8c5d-ef196e382882" alt="">
+    </div>
+    <!-- 풀 세트 -->
+    <div style="position:relative;background:#f7fbff;border:1px solid #c7e0ff;border-radius:8px;height:148px;">
+      <p style="position:absolute;left:15px;top:15px;font-size:15px;font-weight:700;color:#1a1a1a;">풀 세트</p>
+      <p style="position:absolute;left:15px;top:39px;font-size:13px;font-weight:700;color:#d90e0e;">28% 더 저렴해요!</p>
+      <div style="position:absolute;left:15px;top:69px;width:6px;height:6px;background:#19377e;"></div>
+      <p style="position:absolute;left:27px;top:63px;font-size:13px;color:#666;">위탁수하물 (+ 5kg)</p>
+      <div style="position:absolute;left:15px;top:91px;width:6px;height:6px;background:#19377e;"></div>
+      <p style="position:absolute;left:27px;top:85px;font-size:13px;color:#666;">위탁수하물 우선 처리</p>
+      <p style="position:absolute;left:15px;top:111px;font-size:15px;font-weight:700;color:#19377e;">54,900원 / 인</p>
+      <div style="position:absolute;left:364px;top:107px;width:71px;height:30px;background:#d90e0e;border-radius:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+        <p style="font-size:13px;font-weight:500;color:white;">구매 &gt;</p>
+      </div>
+      <img style="position:absolute;left:411px;top:18px;width:24px;height:24px;" src="https://www.figma.com/api/mcp/asset/137af4ef-77f1-4de0-84f4-9fe5dec526e7" alt="">
+    </div>
+  </div>
+
+  <!-- Flight info (간판: both confirmed, no 비운항) -->
+  <div style="position:absolute;top:532px;left:160px;width:960px;">
+    <div style="position:relative;background:white;height:186px;border-radius:8px;width:100%;">
+      <!-- 가는편 badge -->
+      <div style="position:absolute;left:24px;top:20px;width:56px;height:24px;background:#19377e;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+        <p style="font-size:12px;color:white;">가는편</p>
+      </div>
+      <p style="position:absolute;left:88px;top:22px;font-size:14px;font-weight:500;color:black;">2026.07.05(일)</p>
+      <p style="position:absolute;left:366px;top:25px;font-size:12px;color:#999;">기종 : B738 (189)</p>
+      <div style="position:absolute;left:24px;top:54px;right:24px;height:1px;background:#e5e5e5;"></div>
+      <!-- 가는편 times -->
+      <p style="position:absolute;left:24px;top:68px;font-size:28px;font-weight:700;color:#1a1a1a;font-family:'Inter',sans-serif;">07:50</p>
+      <p style="position:absolute;left:24px;top:102px;font-size:18px;font-weight:700;color:black;">서울/인천</p>
+      <p style="position:absolute;left:24px;top:137px;font-size:12px;color:#999;">ICN : Terminal 1</p>
+      <p style="position:absolute;left:176px;top:74px;font-size:22px;color:#999;font-family:'Inter',sans-serif;">→</p>
+      <p style="position:absolute;left:212px;top:68px;font-size:28px;font-weight:700;color:#1a1a1a;font-family:'Inter',sans-serif;">09:00</p>
+      <p style="position:absolute;left:212px;top:102px;font-size:18px;font-weight:700;color:black;">도쿄/나리타</p>
+      <p style="position:absolute;left:212px;top:137px;font-size:12px;color:#999;">NRT : Terminal 2</p>
+      <p style="position:absolute;left:421px;top:108px;font-size:12px;color:#999;">ZE602</p>
+      <!-- 확약 badge for 가는편 -->
+      <div style="position:absolute;left:354px;top:74px;width:105px;height:26px;background:#e5faed;border-radius:13px;display:flex;align-items:center;justify-content:center;">
+        <p style="font-size:12px;font-weight:500;color:#00a651;">확약(결제 완료)</p>
+      </div>
+      <!-- Divider -->
+      <div style="position:absolute;left:482px;top:18px;width:1px;height:150px;background:#e5e5e5;"></div>
+      <!-- 오는편 badge -->
+      <div style="position:absolute;left:516px;top:20px;width:56px;height:24px;background:#158181;border-radius:12px;display:flex;align-items:center;justify-content:center;">
+        <p style="font-size:12px;color:white;">오는편</p>
+      </div>
+      <p style="position:absolute;left:580px;top:22px;font-size:14px;font-weight:500;color:black;">2026.07.19(일)</p>
+      <p style="position:absolute;left:833px;top:32px;font-size:12px;color:#999;">기종 : B738 (189)</p>
+      <!-- 오는편 times -->
+      <p style="position:absolute;left:516px;top:68px;font-size:28px;font-weight:700;color:#1a1a1a;font-family:'Inter',sans-serif;">10:30</p>
+      <p style="position:absolute;left:516px;top:102px;font-size:18px;font-weight:700;color:black;">도쿄/나리타</p>
+      <p style="position:absolute;left:516px;top:137px;font-size:12px;color:#999;">NRT : Terminal 2</p>
+      <p style="position:absolute;left:672px;top:74px;font-size:22px;color:#999;font-family:'Inter',sans-serif;">→</p>
+      <p style="position:absolute;left:706px;top:68px;font-size:28px;font-weight:700;color:#1a1a1a;font-family:'Inter',sans-serif;">11:40</p>
+      <p style="position:absolute;left:706px;top:102px;font-size:18px;font-weight:700;color:black;">서울/인천</p>
+      <p style="position:absolute;left:706px;top:137px;font-size:12px;color:#999;">ICN : Terminal 1</p>
+      <p style="position:absolute;left:888px;top:108px;font-size:12px;color:#999;">ZE604</p>
+      <!-- 확약 badge for 오는편 -->
+      <div style="position:absolute;left:818px;top:74px;width:105px;height:26px;background:#e5faed;border-radius:13px;display:flex;align-items:center;justify-content:center;">
+        <p style="font-size:12px;font-weight:500;color:#00a651;">확약(결제 완료)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 부가서비스 구매 (간판: 6 services, same as direct) -->
+  <div style="position:absolute;top:736px;left:160px;width:960px;background:white;border-radius:8px;padding:24px 24px 24px 24px;">
+    <p style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">부가서비스 구매</p>
+    <div style="height:1px;background:#e5e5e5;margin-bottom:12px;"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:11px 8px;">
+      <div class="svc-card">
+        <div class="svc-icon"></div>
+        <p class="svc-title">부가서비스 세트</p>
+        <p class="svc-desc">세트 구성으로 저렴하게 구매</p>
+        <img style="position:absolute;left:252px;top:15px;width:24px;height:24px;" src="https://www.figma.com/api/mcp/asset/6ac98a87-93ee-43de-8c5d-ef196e382882" alt="">
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"></div>
+        <p class="svc-title">사전 좌석</p>
+        <p class="svc-desc">원하는 자리를 직접 선택</p>
+        <img style="position:absolute;left:252px;top:15px;width:24px;height:24px;" src="https://www.figma.com/api/mcp/asset/6ac98a87-93ee-43de-8c5d-ef196e382882" alt="">
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"></div>
+        <p class="svc-title">위탁수하물</p>
+        <p class="svc-desc">공항 현장보다 저렴해요</p>
+        <img style="position:absolute;left:255px;top:15px;width:24px;height:24px;" src="https://www.figma.com/api/mcp/asset/6ac98a87-93ee-43de-8c5d-ef196e382882" alt="">
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"></div>
+        <p class="svc-title">기내식</p>
+        <p class="svc-desc">든든한 여행의 시작</p>
+        <img style="position:absolute;left:251px;top:14px;width:24px;height:24px;" src="https://www.figma.com/api/mcp/asset/137af4ef-77f1-4de0-84f4-9fe5dec526e7" alt="">
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"></div>
+        <p class="svc-title">여행자 보험</p>
+        <p class="svc-desc">태풍•지진 등 천재지변에 의한 비용 보상</p>
+        <div style="position:absolute;left:139px;top:18px;width:36px;height:18px;background:#d90e0e;border-radius:9px;display:flex;align-items:center;justify-content:center;">
+          <p style="font-size:10px;font-weight:700;color:white;font-family:'Inter',sans-serif;">NEW</p>
+        </div>
+        <img style="position:absolute;left:254px;top:13px;width:24px;height:24px;" src="https://www.figma.com/api/mcp/asset/269dbcca-bed9-43ad-ad00-d53359072a13" alt="">
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon"></div>
+        <p class="svc-title">반려동물 동반 서비스</p>
+        <p class="svc-desc">우리 강아지도 함께 여행을</p>
+        <img style="position:absolute;left:256px;top:14px;width:24px;height:24px;" src="https://www.figma.com/api/mcp/asset/137af4ef-77f1-4de0-84f4-9fe5dec526e7" alt="">
+      </div>
+    </div>
+  </div>
+
+  <!-- 예매 관리 (간판: 자동 체크인 + 부가서비스 취소 only) -->
+  <div style="position:absolute;top:1017px;left:160px;width:960px;background:white;border-radius:8px;padding:24px 20px 22px 24px;">
+    <p style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:12px;">예매 관리</p>
+    <div style="height:1px;background:#e5e5e5;margin-bottom:13px;"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:13px 8px;">
+      <!-- 자동 체크인 -->
+      <div class="svc-card">
+        <div class="svc-icon"></div>
+        <p class="svc-title">자동 체크인</p>
+        <p class="svc-desc">출발 48시간 전까지 가능</p>
+        <div style="position:absolute;left:144px;top:15px;width:36px;height:18px;background:#d90e0e;border-radius:9px;display:flex;align-items:center;justify-content:center;">
+          <p style="font-size:10px;font-weight:700;color:white;font-family:'Inter',sans-serif;">NEW</p>
+        </div>
+      </div>
+      <!-- 부가서비스 취소 -->
+      <div class="svc-card">
+        <div class="svc-icon"></div>
+        <p class="svc-title">부가서비스 취소</p>
+        <p class="svc-desc">부가서비스 취소</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 탑승객 정보 (간판: 변경 버튼 없음, 생년월일 마스킹, 예매자 정보 행 없음) -->
+  <div style="position:absolute;top:1205px;left:160px;width:960px;background:white;border-radius:8px;padding:13px 24px 22px 24px;">
+    <div style="display:flex;align-items:center;margin-bottom:7px;">
+      <p style="font-size:16px;font-weight:700;color:#1a1a1a;flex:1;">탑승객 정보</p>
+    </div>
+    <div style="height:1px;background:#e5e5e5;"></div>
+    <div style="background:#f9f9fa;border-radius:4px;overflow:hidden;margin-top:7px;">
+      <!-- Header -->
+      <div style="background:#eef0f5;height:40px;position:relative;">
+        <p style="position:absolute;left:16px;top:12px;font-size:13px;font-weight:700;color:#666;">성명</p>
+        <p style="position:absolute;left:185px;top:12px;font-size:13px;font-weight:700;color:#666;">성별</p>
+        <p style="position:absolute;left:307px;top:12px;font-size:13px;font-weight:700;color:#666;">생년월일</p>
+        <p style="position:absolute;left:432px;top:12px;font-size:13px;font-weight:700;color:#666;">여권번호</p>
+      </div>
+      <!-- Row 1 (마스킹) -->
+      <div style="background:white;height:44px;position:relative;">
+        <p style="position:absolute;left:16px;top:13px;font-size:14px;font-weight:500;color:#1a1a1a;">KYUNGJU PARK</p>
+        <p style="position:absolute;left:183px;top:13px;font-size:14px;font-weight:500;color:#1a1a1a;">여성</p>
+        <p style="position:absolute;left:299px;top:13px;font-size:14px;font-weight:500;color:#1a1a1a;">****-**-**</p>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:#e5e5e5;"></div>
+      </div>
+      <!-- Row 2 (마스킹) -->
+      <div style="background:white;height:44px;position:relative;">
+        <p style="position:absolute;left:16px;top:13px;font-size:14px;font-weight:500;color:#1a1a1a;">SIYOON PARK</p>
+        <p style="position:absolute;left:183px;top:13px;font-size:14px;font-weight:500;color:#1a1a1a;">남성</p>
+        <p style="position:absolute;left:299px;top:13px;font-size:14px;font-weight:500;color:#1a1a1a;">****-**-**</p>
+        <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:#e5e5e5;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 프로모 배너 3개 -->
+  <div style="position:absolute;top:1420px;left:160px;display:flex;gap:15px;">
+    <div style="width:310px;height:80px;background:#e0e7f4;border-radius:10px;padding:22px 30px 17px 30px;">
+      <p style="font-size:12px;font-weight:300;color:#4b4b4b;margin-bottom:5px;">Visit Japan Web</p>
+      <p style="font-size:18px;font-weight:500;color:black;">비짓 재팻 사전 등록</p>
+    </div>
+    <div style="width:310px;height:80px;background:#e0e7f4;border-radius:10px;padding:20px 23px 17px 23px;">
+      <p style="font-size:12px;font-weight:300;color:black;margin-bottom:7px;">이스타항공 X 클룩</p>
+      <p style="font-size:18px;font-weight:500;color:black;">클룩 일본 호텔 최대 100% 할인</p>
+    </div>
+    <div style="width:310px;height:80px;background:#e0e7f4;border-radius:10px;padding:20px 26px 17px 26px;">
+      <p style="font-size:12px;font-weight:300;color:black;margin-bottom:7px;">도쿠시마의 모든 것</p>
+      <p style="font-size:18px;font-weight:500;color:black;">도쿠시마 완전 정복</p>
+    </div>
+  </div>
+
+  <!-- Fixed bottom bar (간판: 부가서비스 선택 내역) -->
+  <div style="position:fixed;bottom:0;left:0;width:100%;background:#4b4b4b;height:79px;z-index:100;display:flex;align-items:center;justify-content:center;">
+    <a href="fare-info.html" style="width:960px;height:61px;border:1px solid white;border-radius:30px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;cursor:pointer;">
+      <p style="font-size:20px;font-weight:500;color:white;">부가서비스 선택 내역</p>
+      <p style="font-size:18px;font-weight:300;color:white;">자세히 보기 →</p>
+    </a>
+  </div>
+
+</div>
+</body>
+</html>
