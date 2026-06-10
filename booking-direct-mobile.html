@@ -184,25 +184,27 @@
   .flight-code { font-size: 12px; color: #999; }
   .fare-rule-link { font-size: 12px; color: #19377e; cursor: pointer; }
 
-  /* Service grid */
-  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  /* Service list (1-column) */
+  .svc-list { display: flex; flex-direction: column; gap: 6px; }
   .svc-item {
     background: #f9fafc;
     border: 1px solid #e5e5e5;
     border-radius: 8px;
-    padding: 12px 12px 11px;
-    position: relative;
-    min-height: 68px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
   .svc-icon-box {
     width: 28px;
     height: 28px;
     background: #e0e7f4;
     border-radius: 6px;
-    margin-bottom: 8px;
+    flex-shrink: 0;
   }
-  .svc-item-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
-  .svc-item-desc { font-size: 11px; color: #666; line-height: 1.4; }
+  .svc-item-text { flex: 1; }
+  .svc-item-title { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+  .svc-item-desc { font-size: 11px; color: #666; margin-top: 1px; }
   .new-badge {
     display: inline-flex;
     align-items: center;
@@ -334,44 +336,37 @@
   <!-- Alert banner -->
   <div class="alert-banner">
     <div class="alert-icon"><span>!</span></div>
-    <p class="alert-text">[여행자보험] 태풍•지진 등 천재지변에 의한 지연•결항도 체류비용을 보상받을 수 있어요!</p>
-    <span class="alert-link">가입 &gt;</span>
+    <div style="flex: 1;">
+      <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+        <span style="font-size: 24px; font-weight: 700; color: #994000;">여행자 보험</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; background: #ff6b00; border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 700; color: white;">보험</span>
+      </div>
+      <p class="alert-text">태풍•지진 등 천재지변에 의한 지연•결항도 체류비용을 보상받을 수 있어요!</p>
+    </div>
+    <span class="alert-link" style="align-self: flex-end;">가입 &gt;</span>
   </div>
 
   <!-- Pack upsell -->
   <div class="card">
     <p class="card-title">세트 구성으로 저렴하게 구매해 보세요!</p>
-    <div class="pack-grid">
-      <!-- 백 세트 -->
-      <div class="pack-item">
+    <!-- 백 세트 (전체 너비) -->
+    <div class="pack-item" style="display: flex; align-items: center; gap: 16px;">
+      <div style="flex: 1;">
         <p class="pack-name">백 세트</p>
         <p class="pack-discount">8% 더 저렴해요!</p>
-        <div class="pack-bullet">
-          <div class="pack-bullet-dot"></div>
-          <span>위탁수하물 (+5kg)</span>
-        </div>
-        <div class="pack-bullet">
-          <div class="pack-bullet-dot"></div>
-          <span>사전 좌석 (17열 이후)</span>
+        <div style="display: flex; gap: 14px; margin-top: 6px; margin-bottom: 10px;">
+          <div class="pack-bullet">
+            <div class="pack-bullet-dot"></div>
+            <span>위탁수하물 (+5kg)</span>
+          </div>
+          <div class="pack-bullet">
+            <div class="pack-bullet-dot"></div>
+            <span>사전 좌석 (17열 이후)</span>
+          </div>
         </div>
         <p class="pack-price">46,900원 / 인</p>
-        <span class="pack-btn">구매 &gt;</span>
       </div>
-      <!-- 풀 세트 -->
-      <div class="pack-item">
-        <p class="pack-name">풀 세트</p>
-        <p class="pack-discount">28% 더 저렴해요!</p>
-        <div class="pack-bullet">
-          <div class="pack-bullet-dot"></div>
-          <span>위탁수하물 (+5kg)</span>
-        </div>
-        <div class="pack-bullet">
-          <div class="pack-bullet-dot"></div>
-          <span>우선 처리</span>
-        </div>
-        <p class="pack-price">54,900원 / 인</p>
-        <span class="pack-btn">구매 &gt;</span>
-      </div>
+      <span class="pack-btn" style="flex-shrink: 0;">구매 &gt;</span>
     </div>
   </div>
 
@@ -438,39 +433,48 @@
   <div class="card">
     <p class="card-title">여행 전 미리 준비</p>
     <div class="divider"></div>
-    <div class="svc-grid">
+    <div class="svc-list">
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">부가서비스 세트</p>
-        <p class="svc-item-desc">세트 구성으로 저렴하게 구매</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">부가서비스 세트</p>
+          <p class="svc-item-desc">세트 구성으로 저렴하게 구매</p>
+        </div>
       </div>
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">사전 좌석</p>
-        <p class="svc-item-desc">원하는 자리를 직접 선택</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">사전 좌석</p>
+          <p class="svc-item-desc">원하는 자리를 직접 선택</p>
+        </div>
       </div>
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">위탁수하물</p>
-        <p class="svc-item-desc">공항 현장보다 저렴해요</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">위탁수하물</p>
+          <p class="svc-item-desc">공항 현장보다 저렴해요</p>
+        </div>
       </div>
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">기내식</p>
-        <p class="svc-item-desc">든든한 여행의 시작</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">기내식</p>
+          <p class="svc-item-desc">든든한 여행의 시작</p>
+        </div>
       </div>
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">
-          여행자 보험
-          <span class="new-badge">NEW</span>
-        </p>
-        <p class="svc-item-desc">태풍•지진 등 천재지변 비용 보상</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">여행자 보험 <span class="new-badge">NEW</span></p>
+          <p class="svc-item-desc">태풍•지진 등 천재지변 비용 보상</p>
+        </div>
       </div>
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">반려동물 동반</p>
-        <p class="svc-item-desc">우리 강아지도 함께 여행을</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">반려동물 동반</p>
+          <p class="svc-item-desc">우리 강아지도 함께 여행을</p>
+        </div>
       </div>
     </div>
   </div>
@@ -479,39 +483,48 @@
   <div class="card">
     <p class="card-title">예매 관리</p>
     <div class="divider"></div>
-    <div class="svc-grid">
+    <div class="svc-list">
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">여정 변경</p>
-        <p class="svc-item-desc">해외여행 날짜 변경 수수료 무제한 무료</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">여정 변경</p>
+          <p class="svc-item-desc">해외여행 날짜 변경 수수료 무제한 무료</p>
+        </div>
       </div>
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">여정 취소</p>
-        <p class="svc-item-desc">최초 예매 후 24시간 이내 무료 취소</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">여정 취소</p>
+          <p class="svc-item-desc">최초 예매 후 24시간 이내 무료 취소</p>
+        </div>
       </div>
-      <a href="addon-cancel.html" class="svc-item" style="display: block;">
+      <a href="addon-cancel.html" class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">부가서비스 취소</p>
-        <p class="svc-item-desc">부가서비스 취소</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">부가서비스 취소</p>
+          <p class="svc-item-desc">부가서비스 취소</p>
+        </div>
       </a>
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">
-          자동 체크인
-          <span class="new-badge">NEW</span>
-        </p>
-        <p class="svc-item-desc">출발 48시간 전까지 가능</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">자동 체크인 <span class="new-badge">NEW</span></p>
+          <p class="svc-item-desc">출발 48시간 전까지 가능</p>
+        </div>
       </div>
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">예매 확인증</p>
-        <p class="svc-item-desc">PDF파일로 다운로드</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">예매 확인증</p>
+          <p class="svc-item-desc">PDF파일로 다운로드</p>
+        </div>
       </div>
       <div class="svc-item">
         <div class="svc-icon-box"></div>
-        <p class="svc-item-title">매출 전표 확인</p>
-        <p class="svc-item-desc">영수증 확인</p>
+        <div class="svc-item-text">
+          <p class="svc-item-title">매출 전표 확인</p>
+          <p class="svc-item-desc">영수증 확인</p>
+        </div>
       </div>
     </div>
   </div>
