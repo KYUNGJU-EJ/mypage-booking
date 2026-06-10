@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>예매 내역 상세 (직판) - 이스타항공</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: #f3f4f6; padding-bottom: 72px; }
+  a { text-decoration: none; color: inherit; cursor: pointer; }
+
+  /* GNB */
+  .gnb {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 52px;
+    background: #d90e0e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+  .gnb-logo { font-size: 18px; font-weight: 700; color: white; }
+  .gnb-right { display: flex; gap: 14px; align-items: center; }
+  .gnb-right span { font-size: 13px; color: white; }
+  .gnb-right span.dim { color: rgba(255,255,255,0.6); }
+
+  /* Page title */
+  .page-title {
+    background: white;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  /* Section card */
+  .card {
+    background: white;
+    border-radius: 10px;
+    margin: 10px 12px 0;
+    padding: 16px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+  }
+  .divider { height: 1px; background: #e5e5e5; margin-bottom: 12px; }
+
+  /* Booking number */
+  .booking-num-card {
+    background: white;
+    border-radius: 10px;
+    margin: 10px 12px 0;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .booking-num-label { font-size: 12px; color: #999; }
+  .booking-num-value { font-size: 18px; font-weight: 700; color: #1a1a1a; font-family: 'Inter', sans-serif; }
+
+  /* Alert banner */
+  .alert-banner {
+    margin: 10px 12px 0;
+    background: #fff7f0;
+    border: 1px solid #ff6b00;
+    border-radius: 8px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .alert-icon {
+    width: 18px;
+    height: 18px;
+    background: #ff6b00;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .alert-icon span { font-size: 11px; font-weight: 700; color: white; font-family: 'Inter', sans-serif; }
+  .alert-text { font-size: 12px; color: #994000; flex: 1; line-height: 1.5; }
+  .alert-link { font-size: 12px; font-weight: 600; color: #994000; white-space: nowrap; margin-top: 2px; }
+
+  /* Pack upsell */
+  .pack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pack-item {
+    background: #f7fbff;
+    border: 1px solid #c7e0ff;
+    border-radius: 8px;
+    padding: 13px 12px 12px;
+    position: relative;
+  }
+  .pack-name { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+  .pack-discount { font-size: 12px; font-weight: 700; color: #d90e0e; margin-bottom: 8px; }
+  .pack-bullet { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+  .pack-bullet-dot { width: 5px; height: 5px; background: #19377e; flex-shrink: 0; }
+  .pack-bullet span { font-size: 11px; color: #666; }
+  .pack-price { font-size: 14px; font-weight: 700; color: #19377e; margin-top: 10px; margin-bottom: 8px; }
+  .pack-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #d90e0e;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+  }
+
+  /* Flight info */
+  .flight-segment {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .flight-segment:last-child { margin-bottom: 0; }
+  .flight-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #fafafa;
+  }
+  .badge {
+    height: 22px;
+    border-radius: 11px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .badge-outbound { background: #19377e; color: white; }
+  .badge-inbound { background: #158181; color: white; }
+  .badge-flight-status-cancel { background: #fdd5d5; color: #d90e0e; font-weight: 500; }
+  .badge-flight-status-ok { background: #e5faed; color: #00a651; font-weight: 500; }
+  .flight-date { font-size: 13px; font-weight: 500; color: #1a1a1a; }
+  .flight-model { font-size: 11px; color: #999; margin-left: auto; }
+  .flight-body {
+    display: flex;
+    align-items: center;
+    padding: 14px 14px 12px;
+    gap: 0;
+  }
+  .flight-endpoint { flex: 1; }
+  .flight-time { font-size: 24px; font-weight: 700; color: #1a1a1a; font-family: 'Inter', sans-serif; line-height: 1; margin-bottom: 4px; }
+  .flight-city { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+  .flight-terminal { font-size: 11px; color: #999; }
+  .flight-arrow {
+    flex-shrink: 0;
+    padding: 0 10px;
+    font-size: 18px;
+    color: #999;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 18px;
+  }
+  .flight-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    border-top: 1px solid #e5e5e5;
+    background: #fafafa;
+  }
+  .flight-code { font-size: 12px; color: #999; }
+  .fare-rule-link { font-size: 12px; color: #19377e; cursor: pointer; }
+
+  /* Service grid */
+  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .svc-item {
+    background: #f9fafc;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 12px 12px 11px;
+    position: relative;
+    min-height: 68px;
+  }
+  .svc-icon-box {
+    width: 28px;
+    height: 28px;
+    background: #e0e7f4;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+  .svc-item-title { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+  .svc-item-desc { font-size: 11px; color: #666; line-height: 1.4; }
+  .new-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #d90e0e;
+    border-radius: 9px;
+    padding: 2px 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* Passenger table */
+  .pax-table { border-radius: 6px; overflow: hidden; border: 1px solid #e5e5e5; }
+  .pax-thead {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    background: #eef0f5;
+    padding: 10px 12px;
+  }
+  .pax-thead span { font-size: 12px; font-weight: 700; color: #666; }
+  .pax-row {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    padding: 10px 12px;
+    border-top: 1px solid #e5e5e5;
+    background: white;
+  }
+  .pax-row span { font-size: 13px; font-weight: 500; color: #1a1a1a; }
+  .pax-booker {
+    background: #eef0f5;
+    border-top: 1px solid #e5e5e5;
+    padding: 10px 12px;
+  }
+  .pax-booker-label { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .pax-booker-info { font-size: 12px; color: #666; line-height: 1.7; font-family: 'Inter', sans-serif; }
+  .btn-outline-blue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #19377e;
+    border-radius: 4px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #19377e;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .pax-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  /* Promo banners */
+  .promo-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 0 12px;
+    scrollbar-width: none;
+  }
+  .promo-scroll::-webkit-scrollbar { display: none; }
+  .promo-item {
+    flex-shrink: 0;
+    width: 220px;
+    background: #e0e7f4;
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+  .promo-sub { font-size: 11px; font-weight: 300; color: #4b4b4b; margin-bottom: 4px; }
+  .promo-main { font-size: 15px; font-weight: 500; color: #1a1a1a; }
+
+  /* Bottom bar */
+  .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #4b4b4b;
+    height: 64px;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+  }
+  .bottom-bar a {
+    flex: 1;
+    height: 48px;
+    border: 1px solid white;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  .bottom-bar-left { font-size: 15px; font-weight: 500; color: white; }
+  .bottom-bar-right { font-size: 13px; font-weight: 300; color: white; }
+
+  /* Section spacing */
+  .section-gap { height: 10px; }
+</style>
+</head>
+<body>
+
+  <!-- GNB -->
+  <div class="gnb">
+    <a href="index.html" class="gnb-logo">이스타항공</a>
+    <div class="gnb-right">
+      <span>마이페이지</span>
+      <span class="dim">로그아웃</span>
+    </div>
+  </div>
+
+  <!-- Page title -->
+  <div class="page-title">직판 채널 예매 내역 상세</div>
+
+  <!-- Booking number -->
+  <div class="booking-num-card">
+    <span class="booking-num-label">예매번호</span>
+    <span class="booking-num-value">YLGMTJ</span>
+  </div>
+
+  <!-- Alert banner -->
+  <div class="alert-banner">
+    <div class="alert-icon"><span>!</span></div>
+    <p class="alert-text">[여행자보험] 태풍•지진 등 천재지변에 의한 지연•결항도 체류비용을 보상받을 수 있어요!</p>
+    <span class="alert-link">가입 &gt;</span>
+  </div>
+
+  <!-- Pack upsell -->
+  <div class="card">
+    <p class="card-title">세트 구성으로 저렴하게 구매해 보세요!</p>
+    <div class="pack-grid">
+      <!-- 백 세트 -->
+      <div class="pack-item">
+        <p class="pack-name">백 세트</p>
+        <p class="pack-discount">8% 더 저렴해요!</p>
+        <div class="pack-bullet">
+          <div class="pack-bullet-dot"></div>
+          <span>위탁수하물 (+5kg)</span>
+        </div>
+        <div class="pack-bullet">
+          <div class="pack-bullet-dot"></div>
+          <span>사전 좌석 (17열 이후)</span>
+        </div>
+        <p class="pack-price">46,900원 / 인</p>
+        <span class="pack-btn">구매 &gt;</span>
+      </div>
+      <!-- 풀 세트 -->
+      <div class="pack-item">
+        <p class="pack-name">풀 세트</p>
+        <p class="pack-discount">28% 더 저렴해요!</p>
+        <div class="pack-bullet">
+          <div class="pack-bullet-dot"></div>
+          <span>위탁수하물 (+5kg)</span>
+        </div>
+        <div class="pack-bullet">
+          <div class="pack-bullet-dot"></div>
+          <span>우선 처리</span>
+        </div>
+        <p class="pack-price">54,900원 / 인</p>
+        <span class="pack-btn">구매 &gt;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flight info -->
+  <div class="card" style="padding: 0; overflow: hidden;">
+
+    <!-- 가는편 -->
+    <div class="flight-segment" style="border: none; border-radius: 0; border-bottom: 1px solid #e5e5e5; margin-bottom: 0;">
+      <div class="flight-header">
+        <span class="badge badge-outbound">가는편</span>
+        <span class="flight-date">2026.07.05(일)</span>
+        <span class="flight-model">B738 (189)</span>
+      </div>
+      <div class="flight-body">
+        <div class="flight-endpoint">
+          <p class="flight-time">07:50</p>
+          <p class="flight-city">서울/인천</p>
+          <p class="flight-terminal">ICN : Terminal 1</p>
+        </div>
+        <div class="flight-arrow">→</div>
+        <div class="flight-endpoint" style="text-align: right;">
+          <p class="flight-time">09:00</p>
+          <p class="flight-city">도쿄/나리타</p>
+          <p class="flight-terminal">NRT : Terminal 2</p>
+        </div>
+      </div>
+      <div class="flight-footer">
+        <span class="flight-code">ZE602</span>
+        <span class="badge badge-flight-status-cancel">비운항</span>
+        <a class="fare-rule-link">운임 규정 &gt;</a>
+      </div>
+    </div>
+
+    <!-- 오는편 -->
+    <div class="flight-segment" style="border: none; border-radius: 0; margin-bottom: 0;">
+      <div class="flight-header">
+        <span class="badge badge-inbound">오는편</span>
+        <span class="flight-date">2026.07.19(일)</span>
+        <span class="flight-model">B738 (189)</span>
+      </div>
+      <div class="flight-body">
+        <div class="flight-endpoint">
+          <p class="flight-time">10:30</p>
+          <p class="flight-city">도쿄/나리타</p>
+          <p class="flight-terminal">NRT : Terminal 2</p>
+        </div>
+        <div class="flight-arrow">→</div>
+        <div class="flight-endpoint" style="text-align: right;">
+          <p class="flight-time">11:40</p>
+          <p class="flight-city">서울/인천</p>
+          <p class="flight-terminal">ICN : Terminal 1</p>
+        </div>
+      </div>
+      <div class="flight-footer">
+        <span class="flight-code">ZE604</span>
+        <span class="badge badge-flight-status-ok">확약(결제 완료)</span>
+        <a class="fare-rule-link">운임 규정 &gt;</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 여행 전 미리 준비 (부가서비스) -->
+  <div class="card">
+    <p class="card-title">여행 전 미리 준비</p>
+    <div class="divider"></div>
+    <div class="svc-grid">
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">부가서비스 세트</p>
+        <p class="svc-item-desc">세트 구성으로 저렴하게 구매</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">사전 좌석</p>
+        <p class="svc-item-desc">원하는 자리를 직접 선택</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">위탁수하물</p>
+        <p class="svc-item-desc">공항 현장보다 저렴해요</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">기내식</p>
+        <p class="svc-item-desc">든든한 여행의 시작</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">
+          여행자 보험
+          <span class="new-badge">NEW</span>
+        </p>
+        <p class="svc-item-desc">태풍•지진 등 천재지변 비용 보상</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">반려동물 동반</p>
+        <p class="svc-item-desc">우리 강아지도 함께 여행을</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 예매 관리 -->
+  <div class="card">
+    <p class="card-title">예매 관리</p>
+    <div class="divider"></div>
+    <div class="svc-grid">
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">여정 변경</p>
+        <p class="svc-item-desc">해외여행 날짜 변경 수수료 무제한 무료</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">여정 취소</p>
+        <p class="svc-item-desc">최초 예매 후 24시간 이내 무료 취소</p>
+      </div>
+      <a href="addon-cancel.html" class="svc-item" style="display: block;">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">부가서비스 취소</p>
+        <p class="svc-item-desc">부가서비스 취소</p>
+      </a>
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">
+          자동 체크인
+          <span class="new-badge">NEW</span>
+        </p>
+        <p class="svc-item-desc">출발 48시간 전까지 가능</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">예매 확인증</p>
+        <p class="svc-item-desc">PDF파일로 다운로드</p>
+      </div>
+      <div class="svc-item">
+        <div class="svc-icon-box"></div>
+        <p class="svc-item-title">매출 전표 확인</p>
+        <p class="svc-item-desc">영수증 확인</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 탑승객 정보 -->
+  <div class="card">
+    <div class="pax-header-row">
+      <p class="card-title" style="margin-bottom: 0;">탑승객 정보</p>
+      <span class="btn-outline-blue">탑승객 정보 변경 &gt;</span>
+    </div>
+    <div class="divider"></div>
+    <div class="pax-table">
+      <div class="pax-thead">
+        <span>성명</span>
+        <span>성별</span>
+        <span>생년월일</span>
+      </div>
+      <div class="pax-row">
+        <span>KYUNGJU PARK</span>
+        <span>여성</span>
+        <span>1980-05-06</span>
+      </div>
+      <div class="pax-row">
+        <span>SIYOON PARK</span>
+        <span>남성</span>
+        <span>2000-09-15</span>
+      </div>
+      <div class="pax-booker">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+          <p class="pax-booker-label">예매자 정보</p>
+          <span class="btn-outline-blue">예매자 정보 변경 &gt;</span>
+        </div>
+        <p class="pax-booker-info">PARK/KYUNGJU<br>kjpark978@gmail.com<br>+82-10-8961-8367</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 프로모 배너 -->
+  <div style="margin: 10px 0 0;">
+    <div class="promo-scroll">
+      <div class="promo-item">
+        <p class="promo-sub">Visit Japan Web</p>
+        <p class="promo-main">비짓 재팬 사전 등록</p>
+      </div>
+      <div class="promo-item">
+        <p class="promo-sub">이스타항공 X 클룩</p>
+        <p class="promo-main">클룩 일본 호텔 최대 100% 할인</p>
+      </div>
+      <div class="promo-item">
+        <p class="promo-sub">도쿠시마의 모든 것</p>
+        <p class="promo-main">도쿠시마 완전 정복</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 16px;"></div>
+
+  <!-- Fixed bottom bar -->
+  <div class="bottom-bar">
+    <a href="fare-info.html">
+      <span class="bottom-bar-left">항공권 예매 내역</span>
+      <span class="bottom-bar-right">자세히 보기 →</span>
+    </a>
+  </div>
+
+</body>
+</html>
