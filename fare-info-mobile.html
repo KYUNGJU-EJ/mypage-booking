@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>운임 정보 - 이스타항공</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans KR', sans-serif; background: #f3f4f6; padding-bottom: 24px; }
+  a { text-decoration: none; color: inherit; cursor: pointer; }
+
+  /* GNB */
+  .gnb {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 52px;
+    background: #d90e0e;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+  .gnb-logo { font-size: 18px; font-weight: 700; color: white; }
+  .gnb-right { display: flex; gap: 14px; align-items: center; }
+  .gnb-right span { font-size: 13px; color: white; }
+  .gnb-right span.dim { color: rgba(255,255,255,0.6); }
+
+  /* Back bar */
+  .back-bar {
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 13px 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .back-bar a { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+
+  /* Page header */
+  .page-header {
+    padding: 16px 16px 4px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .page-header-title { font-size: 20px; font-weight: 800; color: #1e1e1e; }
+  .page-header-unit { font-size: 12px; color: #666; font-family: 'Inter', sans-serif; }
+
+  /* Pax card */
+  .pax-card {
+    background: white;
+    border-radius: 10px;
+    margin: 10px 12px 0;
+    overflow: hidden;
+  }
+
+  /* Pax header */
+  .pax-card-header {
+    background: #d9d9d9;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+  }
+  .pax-card-name { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+  .pax-card-total { font-size: 15px; font-weight: 700; color: #1a1a1a; font-family: 'Inter', sans-serif; }
+
+  /* Section label */
+  .section-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 11px 14px;
+  }
+  .section-label-text { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+  .section-label-amount { font-size: 15px; font-weight: 700; color: #1a1a1a; font-family: 'Inter', sans-serif; }
+
+  /* Fare row */
+  .fare-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 14px;
+  }
+  .fare-row-label { font-size: 13px; color: #4b4b4b; }
+  .fare-row-label.bold { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+  .fare-row-label.indent { padding-left: 14px; }
+  .fare-row-amount { font-size: 13px; color: #4b4b4b; font-family: 'Inter', sans-serif; white-space: nowrap; }
+  .fare-row-amount.bold { font-size: 14px; font-weight: 700; color: #1a1a1a; }
+
+  .divider { height: 1px; background: #e5e5e5; margin: 4px 14px; }
+  .divider-thick { height: 2px; background: #bbb; margin: 0; }
+
+  /* Direction sub-header */
+  .direction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 14px;
+    background: #f5f6f8;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .direction-label { font-size: 13px; font-weight: 700; color: #1a1a1a; }
+  .direction-amount { font-size: 13px; font-weight: 700; color: #1a1a1a; font-family: 'Inter', sans-serif; }
+
+  /* Addon row */
+  .addon-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 9px 14px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .addon-row:last-child { border-bottom: none; }
+  .addon-left { flex: 1; }
+  .addon-name { font-size: 13px; font-weight: 500; color: #1a1a1a; margin-bottom: 2px; }
+  .addon-detail { font-size: 11px; color: #999; }
+  .addon-amount { font-size: 13px; font-weight: 500; color: #4b4b4b; font-family: 'Inter', sans-serif; white-space: nowrap; padding-left: 12px; padding-top: 1px; }
+</style>
+</head>
+<body>
+
+  <!-- GNB -->
+  <div class="gnb">
+    <a href="index.html" class="gnb-logo">이스타항공</a>
+    <div class="gnb-right">
+      <span>마이페이지</span>
+      <span class="dim">로그아웃</span>
+    </div>
+  </div>
+
+  <!-- Back bar -->
+  <div class="back-bar">
+    <a href="booking-direct-mobile.html">← 이전 화면으로</a>
+  </div>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <span class="page-header-title">운임 정보</span>
+    <span class="page-header-unit">KRW</span>
+  </div>
+
+  <!-- ===== 성인1 ===== -->
+  <div class="pax-card">
+    <div class="pax-card-header">
+      <span class="pax-card-name">성인1&nbsp; KUTCHER/CHRISTOPHERASHTON</span>
+      <span class="pax-card-total">499,500</span>
+    </div>
+
+    <!-- 항공 운송료 -->
+    <div class="section-label">
+      <span class="section-label-text">항공 운송료</span>
+      <span class="section-label-amount">118,000</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label">항공 운임</span>
+      <span class="fare-row-amount">78,000</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label indent">· 할인 내역</span>
+      <span class="fare-row-amount">- 20,000</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label">유류할증료</span>
+      <span class="fare-row-amount">32,000</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label">공항시설이용료</span>
+      <span class="fare-row-amount">28,000</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label">여정 변경 수수료</span>
+      <span class="fare-row-amount">28,000</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 부가 서비스 -->
+    <div class="section-label" style="padding-top: 10px;">
+      <span class="section-label-text">부가 서비스</span>
+      <span class="section-label-amount">381,500</span>
+    </div>
+
+    <!-- 가는편 -->
+    <div class="direction-header">
+      <span class="direction-label">가는편</span>
+      <span class="direction-amount">206,500</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">사전좌석</p>
+        <p class="addon-detail">6B</p>
+      </div>
+      <span class="addon-amount">15,000</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">사전구매 위탁수하물</p>
+        <p class="addon-detail">15kg</p>
+      </div>
+      <span class="addon-amount">45,000</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">위탁수하물 추가 제공</p>
+        <p class="addon-detail">5kg</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">기내식</p>
+        <p class="addon-detail">함박스테이크와 볶음밥</p>
+      </div>
+      <span class="addon-amount">15,000</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">반려동물 동반 서비스</p>
+      </div>
+      <span class="addon-amount">120,000</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">여행자 보험</p>
+        <p class="addon-detail">기본형</p>
+      </div>
+      <span class="addon-amount">11,500</span>
+    </div>
+
+    <!-- 오는편 -->
+    <div class="direction-header">
+      <span class="direction-label">오는편</span>
+      <span class="direction-amount">175,000</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">부가서비스 세트</p>
+        <p class="addon-detail">풀세트</p>
+      </div>
+      <span class="addon-amount">55,000</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">사전좌석</p>
+        <p class="addon-detail">6B</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">사전구매 위탁수하물</p>
+        <p class="addon-detail">5kg</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">위탁수하물 추가 제공</p>
+        <p class="addon-detail">5kg</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">기내식</p>
+        <p class="addon-detail">함박스테이크와 볶음밥</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">반려동물 동반 서비스</p>
+      </div>
+      <span class="addon-amount">120,000</span>
+    </div>
+  </div>
+
+  <!-- ===== 소아1 ===== -->
+  <div class="pax-card">
+    <div class="pax-card-header">
+      <span class="pax-card-name">소아1&nbsp; HWANG/SEONGYEOP</span>
+      <span class="pax-card-total">244,500</span>
+    </div>
+
+    <div class="section-label">
+      <span class="section-label-text">항공 운송료</span>
+      <span class="section-label-amount">118,000</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label">항공 운임</span>
+      <span class="fare-row-amount">78,000</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label indent">· 할인 내역</span>
+      <span class="fare-row-amount">- 20,000</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label">유류할증료</span>
+      <span class="fare-row-amount">32,000</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label">공항시설이용료</span>
+      <span class="fare-row-amount">28,000</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label" style="padding-top: 10px;">
+      <span class="section-label-text">부가 서비스</span>
+      <span class="section-label-amount">126,500</span>
+    </div>
+
+    <!-- 소아 가는편 -->
+    <div class="direction-header">
+      <span class="direction-label">가는편</span>
+      <span class="direction-amount">71,500</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">사전좌석</p>
+        <p class="addon-detail">6B</p>
+      </div>
+      <span class="addon-amount">15,000</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">사전구매 위탁수하물</p>
+        <p class="addon-detail">15kg</p>
+      </div>
+      <span class="addon-amount">45,000</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">위탁수하물 추가 제공</p>
+        <p class="addon-detail">5kg</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">기내식</p>
+        <p class="addon-detail">함박스테이크와 볶음밥</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">여행자 보험</p>
+        <p class="addon-detail">기본형</p>
+      </div>
+      <span class="addon-amount">11,500</span>
+    </div>
+
+    <!-- 소아 오는편 -->
+    <div class="direction-header">
+      <span class="direction-label">오는편</span>
+      <span class="direction-amount">55,000</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">부가서비스 세트</p>
+        <p class="addon-detail">풀세트</p>
+      </div>
+      <span class="addon-amount">55,000</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">사전좌석</p>
+        <p class="addon-detail">6B</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">사전구매 위탁수하물</p>
+        <p class="addon-detail">5kg</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">위탁수하물 추가 제공</p>
+        <p class="addon-detail">5kg</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">기내식</p>
+        <p class="addon-detail">함박스테이크와 볶음밥</p>
+      </div>
+      <span class="addon-amount">-</span>
+    </div>
+  </div>
+
+  <!-- ===== 유아1 ===== -->
+  <div class="pax-card">
+    <div class="pax-card-header">
+      <span class="pax-card-name">유아1&nbsp; ZELLWEGER/RENÉEKATHLEEN</span>
+      <span class="pax-card-total">36,800</span>
+    </div>
+
+    <div class="section-label">
+      <span class="section-label-text">항공 운송료</span>
+      <span class="section-label-amount">89,500</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label">항공 운임</span>
+      <span class="fare-row-amount">60,000</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label">유류할증료</span>
+      <span class="fare-row-amount">-</span>
+    </div>
+    <div class="fare-row">
+      <span class="fare-row-label">공항시설이용료</span>
+      <span class="fare-row-amount">29,500</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label" style="padding-top: 10px;">
+      <span class="section-label-text">부가 서비스</span>
+      <span class="section-label-amount">6,800</span>
+    </div>
+
+    <!-- 유아 가는편 -->
+    <div class="direction-header">
+      <span class="direction-label">가는편</span>
+      <span class="direction-amount">6,800</span>
+    </div>
+    <div class="addon-row">
+      <div class="addon-left">
+        <p class="addon-name">여행자 보험</p>
+        <p class="addon-detail">기본형</p>
+      </div>
+      <span class="addon-amount">6,800</span>
+    </div>
+  </div>
+
+</body>
+</html>
